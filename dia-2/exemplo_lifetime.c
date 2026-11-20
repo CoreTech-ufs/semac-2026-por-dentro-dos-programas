@@ -1,5 +1,6 @@
 /*
 * Código de exemplo que demonstra o tempo de vida de variáveis.
+*
 * Criado por: João Vinícius
 * Compilação: gcc exemplo_lifetime.c -o exemplo_lifetime.elf
 * Execução: ./exemplo_lifetime.elf
