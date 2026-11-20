@@ -6,8 +6,8 @@
 * dados recebidos, é seu papel analisar o código do firmware e corrigir erros.
 *
 * Criado por: João Vinícius
-* Compilação: 
-*
+* Compilação: gcc -g atividade_telemetria.c -o atividade_telemetria.elf -lm
+* Execução ./atividade_telemetria.elf
 */
 
 #include <stdio.h>
@@ -16,7 +16,6 @@
 #include <unistd.h>
 #include <math.h>
 
-#define TAM_HISTORICO 10
 #define FREQ_ENVIO 1 // Hertz
 
 enum { X, Y, Z };
@@ -24,14 +23,14 @@ enum { X, Y, Z };
 typedef struct {
     uint64_t num_seq; // Número de pacote
     float altitude;   // Altitude (metros)
-    float acel[3];    // Acelerômetro (g)
+    float acel[3];    // Acelerômetro (ms^2)
     float coord[2];   // Coordenadas geográficas
 } PacoteAeronave;
 
 PacoteAeronave* criar_pacote() {
-    PacoteAeronave* pacote = (PacoteAeronave*)malloc(sizeof(PacoteAeronave));
+    PacoteAeronave pacote;
 
-    return pacote;
+    return &pacote;
 }
 
 uint64_t obter_numero_sequencia() {
@@ -50,7 +49,7 @@ void processar_dados(PacoteAeronave* pacote) {
     // Detecção de queda
     float soma = 0.0f;
 
-    for (uint8_t i = 0; i < 3; i++) {
+    for (uint8_t i = 0; i <= 3; i++) {
         soma += powf(pacote->acel[i], 2);
     }
 
@@ -74,16 +73,8 @@ void obter_dados_sensores(PacoteAeronave* pacote) {
     pacote->coord[Y] = -37.1000f + 0.0001f * r;
 }
 
-// void atualizar_historico(PacoteAeronave* h, PacoteAeronave pacote) {
-//     // Desloca pacotes antigos para trás
-//     for (uint8_t i = TAM_HISTORICO-1; i > 0; i--) h[i] = h[i-1];
-
-//     // Insere novo pacote no início
-//     memcpy(&h[0], &pacote, sizeof(PacoteAeronave));
-// }
-
 int enviar_pacote(PacoteAeronave* pacote) {
-    printf("\nPacote %llu:\n*Altitude: %f m\n*Acelerecao (ms²): %f %f %f\n*Coord: %f° %f°\n",
+    printf("\nPacote %llu:\n*Altitude: %f m\n*Acelerecao (ms^2): %f %f %f\n*Coord: %f° %f°\n",
         pacote->num_seq,
         pacote->altitude,
         pacote->acel[X],
@@ -99,9 +90,6 @@ int enviar_pacote(PacoteAeronave* pacote) {
 }
 
 int main() {
-    // Histórico contendo últimos pacotes
-    PacoteAeronave pacotes_enviados[TAM_HISTORICO] = {0};
-
     for (uint64_t i = 0 ;; i++) {
         // Preparação dos dados do pacote
         PacoteAeronave* pacote = criar_pacote();
@@ -110,9 +98,7 @@ int main() {
         obter_dados_sensores(pacote);
         processar_dados(pacote);
 
-        // atualizar_historico(pacotes_enviados, *pacote);
         enviar_pacote(pacote);
-        free(pacote);
 
         // Pausa a execução do programa por um certo tempo
         sleep((int)(1.0f/FREQ_ENVIO));
