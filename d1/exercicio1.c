@@ -20,7 +20,6 @@ int main() {
     return 0;
 }
 
-
 /*Lista de comandos uteis
 
 * COMPILACAO BETINHA: gcc -o executavel exercicio.c
