@@ -22,20 +22,18 @@ int main() {
 
 /*Lista de comandos uteis
 
-* COMPILACAO BETINHA: gcc -o executavel exercicio.c
-* EXECUCAO BETINHA: ./executavel 
+* COMPILACAO REGULAR: gcc -o executavel exercicioN.c
+* EXECUCAO REGULAR: ./executavel 
 
-* COMPILACAO CHAD: gcc -g exercicio.c -o executavel
-* EXECUCAO CHAD: gdb ./executavel
+* COMPILACAO COM GDB: gcc -g exercicioN.c -o executavel
+* EXECUCAO CHAD: GDB ./executavel
 
 **SECAO GDB:
-    -> "break checkpoint" (sugestao de checkpoint: "main" e "funcao") 
+    -> "break checkpoint" (sugestao de checkpoint: "main" e "funcao_chamada_no_exercicio") 
     -> "run" (inicio da execucao, sugestao "layout src" antes do "run" para visualizacao da depuracao)
     -> "next" (avancar na depuracao)
     -> "ptype vetor"
     -> "ptype media"
     -> "print sizeof(&vetor)"
     -> "print &vetor"
-
-
 */
