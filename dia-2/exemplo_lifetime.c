@@ -20,7 +20,7 @@ int main() {
     int* num = criar_numero();
 
     // Imprime valor da variável criada pela função
-    printf("Valor de num (main): %d\n", num);
+    printf("Valor de num (main): %d\n", *num);
 
     return 0;
 }
