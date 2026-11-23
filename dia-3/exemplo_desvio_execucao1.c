@@ -1,3 +1,11 @@
+/*
+* Programa que demonstra desvio de fluxo por corrupção de memória.
+*
+* Criado por: João Vinícius
+* Compilação: gcc exemplo_desvio_execucao1.c -o exemplo_desvio_execucao1.elf
+* Execução: ./exemplo_desvio_execucao1.elf
+*/
+
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
