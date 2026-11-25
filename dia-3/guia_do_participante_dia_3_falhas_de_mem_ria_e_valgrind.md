@@ -92,7 +92,7 @@ Para cada caso abaixo, siga rigorosamente o ciclo de investigação antes de alt
 3. **Explicar:** Cruze a linha apontada pelo Valgrind com a linha do `malloc`.
 4. **Corrigir e Verificar:** Aplique a correção, recompile e compare o novo relatório com o anterior.
 
-### Caso 1 (Essencial): Processamento de Amostras [(clique para ver o código)](/semac-2026-por-dentro-dos-programas/dia-3/clinica_basica.c)
+### Caso 1 (Essencial): Processamento de Amostras [(clique para ver o código)](/dia-3/clinica_basica.c)
 
 
 **Perguntas de investigação:**
@@ -103,7 +103,7 @@ Para cada caso abaixo, siga rigorosamente o ciclo de investigação antes de alt
 
 ---
 
-### Caso 2 (Desafio): Validação de Leituras de Sensores [(clique para ver o código)](/semac-2026-por-dentro-dos-programas/dia-3/clinica_uaf.c)
+### Caso 2 (Desafio): Validação de Leituras de Sensores [(clique para ver o código)](/dia-3/clinica_uaf.c)
 
 **Perguntas de investigação:**
 * O que acontece com o endereço armazenado em `sensores` quando uma leitura negativa é encontrada?
